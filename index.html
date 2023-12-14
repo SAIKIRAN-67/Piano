@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .main{
+            height: 400px;
+            width: 80%;
+            border: 1px solid black;
+            background-color: black;
+            color: grey;
+        }
+        .head{
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+        .toggle{
+            height: 20px;
+            width: 40px;
+            border-radius: 20px;
+            background-color: grey;
+            align-items: center;
+
+        }
+        .togglebut{
+            height: 15px;
+            width: 15px;
+            border-radius: 50%;
+            background-color: white;
+            float: left;
+            margin-top: 2px;
+            margin-left: 2px;
+        }
+        button{
+            height: 200px;
+            width: 50px;
+            border-radius:5px;
+            margin: 0;
+            padding: 0;
+        }
+        .black{
+            background-color: black;
+            border: 1px solid white;
+            color: white;
+        }
+        .white{
+            background-color: white;
+            border: 1px solid black;
+            color: black;
+        }
+        .keys{
+            align-items: center;
+            justify-content: center;
+            display: flex;
+        }
+
+        .volumebut{
+            height: 5px;
+            background-color: white;
+            width:0;
+            display: flex;
+            justify-content: center;
+        }
+        audio{
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div class="head">
+            <h2>Playable Piano</h2>
+            <p>Volume <div class="volume"><input type="range"></div></p>
+            <p>Show keys <div class="toggle"><div class="togglebut" value="false"></div></div></p>
+        </div>
+        <div class="keys">
+            <button class="white" value="a"></button>
+            <button class="black" value="w"></button>
+            <button class="white" value="s"></button>
+            <button class="black" value="e"></button>
+            <button class="white" value="d"></button>
+            <button class="white" value="f"></button>
+            <button class="black" value="t"></button>
+            <button class="white" value="g"></button>
+            <button class="black" value="y"></button>
+            <button class="white" value="h"></button>
+            <button class="black" value="u"></button>
+            <button class="white" value="j"></button>
+            <button class="white" value="k"></button>
+            <button class="black" value="o"></button>
+            <button class="white" value="l"></button>
+            <button class="black" value="p"></button>
+            <button class="white" value="m"></button>
+        </div>
+    </div>
+    <script>
+        document.getElementsByClassName('togglebut')[0].addEventListener('click',()=>{
+            if(document.getElementsByClassName('togglebut')[0].style.float=="right"){
+                document.getElementsByClassName('togglebut')[0].style.float="left"
+                document.getElementsByClassName('togglebut')[0].setAttribute('value',false);
+                var length=document.getElementsByTagName('button').length
+                for(var i=0;i<length;i++){
+                    document.getElementsByTagName('button')[i].innerHTML="";
+                } 
+            }
+            else{
+                document.getElementsByClassName('togglebut')[0].style.float="right"
+                document.getElementsByClassName('togglebut')[0].style.margintop="2px"
+                document.getElementsByClassName('togglebut')[0].style.marginright="2px"
+                document.getElementsByClassName('togglebut')[0].setAttribute('value',true)
+                var s="AWSEDFTGYHUJKOLPM"
+                var length=document.getElementsByTagName('button').length
+                console.log(length);
+                for(var i=0;i<length;i++){
+                    document.getElementsByTagName('button')[i].innerHTML=s[i];
+                } 
+            }
+        })
+        var length=document.getElementsByTagName('button').length
+        var music=["tunes/a.wav","tunes/w.wav","tunes/s.wav","tunes/e.wav","tunes/d.wav","tunes/f.wav","tunes/t.wav","tunes/y.wav","tunes/h.wav","tunes/u.wav","tunes/j.wav","tunes/k.wav","tunes/l.wav","tunes/p.wav","tunes/m.wav","tunes/g.wav","tunes/o.wav"]
+        for(let i=0;i<length;i++){
+            document.getElementsByTagName('button')[i].addEventListener('click',()=>{
+                var  src=music[i];
+                var audio=new Audio(src);
+                audio.play()
+            })
+        }
+    </script>
+</body>
+</html>
